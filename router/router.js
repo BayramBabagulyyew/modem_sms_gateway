@@ -32,8 +32,15 @@ router.post('/send-sms', async (req, res) => {
         await fs.writeFile(logsPath, JSON.stringify(logs, null, 2), 'utf8');
 
         await sendSMSQueue.add({ to, message, id: logEntry.id }, { delay: 5000 });
+        return res.json({ 
+                    success: true, 
+                    data: { 
+                        message: 'SMS queued for sending', 
+                        logId: logEntry.id 
+                    } 
+                });
     } catch (err) {
-        return res.status(err.status || 500).json({ message: 'Failed to write logs.json:', error: err.message });
+        return res.status(err.status || 500).json({ success: false, message: err.message });
     }
 });
 
@@ -74,7 +81,22 @@ router.get('/get-messages', async (req, res) => {
         } catch (e) {
             // ignore missing/invalid taken.json and return messages unchanged
         }
-        res.json({ success: true, messages });
+        res.json({ success: true, data:{messages} });
+    } catch (err) {
+        res.status(err.status || 500).json({ success: false, error: err.message });
+    }
+});
+
+router.get('/health', async (req, res) => {
+    try {
+        
+        res.json({ 
+            success: true, 
+            data: {
+                message: "I'm alone, bro. Thank you for remembering me.",
+                status: "ok"
+            } 
+        });
     } catch (err) {
         res.status(err.status || 500).json({ success: false, error: err.message });
     }

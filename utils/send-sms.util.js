@@ -40,6 +40,7 @@ exports.sendSMS = async (to, message) => {
       }
     });
   });
+  
 }
 
 exports.getMessages = async () => {
@@ -66,3 +67,6 @@ exports.getMessages = async () => {
     }
     return messages;
 }
+exports.checkBalance = async () => {
+  await this.sendSMS('*0800#','BALANCE');  
+};
