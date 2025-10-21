@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { sendSMS, getMessages } = require('../utils/send-sms.util');
+const {  getMessages } = require('../utils/send-sms.util');
 const fs = require('fs').promises;
 const path = require('path');
 const { sendSMSQueue } = require('../config/bull.config');

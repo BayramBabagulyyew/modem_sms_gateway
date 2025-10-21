@@ -1,7 +1,7 @@
 const { SerialPort } = require('serialport');  // ← note the destructuring
 const { ReadlineParser } = require('@serialport/parser-readline');
 
-const portPath = '/dev/ttyUSB0'; // your working modem port
+const portPath = process.env.USB_PORT || '/dev/ttyUSB0'; // your working modem port
 const modem = new SerialPort({ path: portPath, baudRate: 115200 });
 const parser = modem.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 
