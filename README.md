@@ -28,7 +28,7 @@ This project setup involves the following steps:
   {
     "to": "+1234567890",
     "message": "Hello, this is a test SMS.",
-    "projectName": "E-University"
+    "projectName": "E-Center"
   }
   ```
 - **Response:**
