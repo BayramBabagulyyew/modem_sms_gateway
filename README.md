@@ -71,6 +71,7 @@ To send an SMS, use a tool like `curl` or Postman:
 ```bash
 curl -X POST http://localhost:3000/send \
     -H "Content-Type: application/json" \
+    -H "X-Api-Key: application/json" \
     -d '{"to": "+1234567890", "message": "Hello, this is a test SMS."}'
 ```
 
